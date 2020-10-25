@@ -22,6 +22,6 @@ void imprimeEditor (Editor* editor);
 
 void destroiEditor (Editor* editor);
 
-Editor* criaEditor (char* nome);
+Editor* criaEditor (char nome[20]);
 
 #endif /* EDITOR_H */

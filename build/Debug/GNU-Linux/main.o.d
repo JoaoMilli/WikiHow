@@ -1,5 +1,8 @@
-build/Debug/GNU-Linux/main.o: main.c Editor.h ListaEditor.h
+build/Debug/GNU-Linux/main.o: main.c Editor.h ListaEditor.h \
+ Contribuicao.h
 
 Editor.h:
 
 ListaEditor.h:
+
+Contribuicao.h:

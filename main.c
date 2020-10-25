@@ -16,6 +16,7 @@
 #include <string.h>
 #include "Editor.h"
 #include "ListaEditor.h"
+#include "Contribuicao.h"
 
 
 int main(int argc, char** argv) {
@@ -56,8 +57,18 @@ int main(int argc, char** argv) {
     imprimeListaEditor (lista_ed);
     printf("\n\n");
     
+    Contribuicao* cont = iniciaContribuicao ("c1.txt", ed1);
+    
+    printf("Nome: %s\n", retornaNomeContribuicao (cont));
+    char* fisica = strdup("fisica.txt");
+    
+    imprimeContribuicao (cont, fisica);
+    
+    destroiContribuicao (cont);
+    
+    free(fisica);
+    
     destroiLista (lista_ed);
-   
     
    return (EXIT_SUCCESS);
 }

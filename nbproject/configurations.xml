@@ -4,12 +4,14 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Arquivos de Cabeçalho"
                    projectFiles="true">
+      <itemPath>Contribuicao.h</itemPath>
       <itemPath>Editor.h</itemPath>
       <itemPath>ListaEditor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Arquivos de Código-Fonte"
                    projectFiles="true">
+      <itemPath>Contribuicao.c</itemPath>
       <itemPath>Editor.c</itemPath>
       <itemPath>ListaEditor.c</itemPath>
       <itemPath>main.c</itemPath>
@@ -40,6 +42,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Contribuicao.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Contribuicao.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Editor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Editor.h" ex="false" tool="3" flavor2="0">
@@ -71,6 +77,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Contribuicao.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Contribuicao.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Editor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Editor.h" ex="false" tool="3" flavor2="0">
