@@ -5,42 +5,42 @@
  */
 
 /* 
- * File:   ListaCont.c
+ * File:   ListaPag.c
  * Author: joao
  * 
- * Created on 29 de Outubro de 2020, 19:58
+ * Created on 30 de Outubro de 2020, 12:38
  */
 
-#include "Contribuicao.h"
-#include "ListaCont.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ListaPag.h"
+#include "Pagina.h"
 
 typedef struct celula Celula;
 
 struct celula{
-    Contribuicao* cont;
+    Pagina* pag;
     Celula* prox;
 };
 
-struct lista_cont{
+struct lista_pag{
     Celula* prim;
     Celula* ult;
 };
 
-ListaCont* iniciaListaCont(){
-    ListaCont* lista;
-    lista = (ListaCont*) malloc (sizeof(ListaCont));
+ListaPag* iniciaListaPagina(){
+    ListaPag* lista;
+    lista = (ListaPag*) malloc (sizeof(ListaPag));
     lista -> prim = NULL;
     lista -> ult = NULL;
     return lista;
 }
 
-void insereListaCont (ListaCont* lista, Contribuicao* cont){
+void insereListaPag (ListaPag* lista, Pagina* pag){
     Celula* celula;
     celula = (Celula*) malloc (sizeof(Celula));
-    celula -> cont = cont;
+    celula -> pag = pag;
     if (lista -> ult != NULL) lista -> ult -> prox = celula;
     lista -> ult = celula;
     celula -> prox = NULL;
@@ -48,36 +48,23 @@ void insereListaCont (ListaCont* lista, Contribuicao* cont){
     if(lista -> prim == NULL) lista -> prim = celula;
 }
 
-void imprimeListaCont (ListaCont* lista, char* nome){   
+void imprimeListaPag (ListaPag* lista, char* nome){
     
     Celula* aux_cell;
     
     for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
-        imprimeContribuicao (aux_cell -> cont, nome);
+        imprimePagina (aux_cell -> pag);
     }
 }
 
-void imprimeListaContNomes (ListaCont* lista, char* nome){
+void retiraListaPag (ListaPag* lista, char* chave){
     
-    Celula* aux_cell;
-    
-    FILE* file;
-    
-    file = fopen (nome, "a");
-    
-    for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
-        fprintf(file,"%s %s\n", retornaNomeEditorCont(aux_cell -> cont), retornaNomeContribuicao (aux_cell -> cont));
-    }
-    fclose(file);
-}
-
-void retiraListaCont(ListaCont* lista, char* chave){
     Celula* celula = lista -> prim;
-    Contribuicao* cont;
+    Pagina* pag;
     Celula* anterior = NULL;
     
     
-    while (celula != NULL && strcmp(retornaNomeContribuicao(celula -> cont), chave)){
+    while (celula != NULL && strcmp(retornaNomePagina(celula -> pag), chave)){
         anterior = celula;
         celula = celula -> prox;
     }
@@ -86,7 +73,7 @@ void retiraListaCont(ListaCont* lista, char* chave){
         return;
     }
     
-    cont = celula -> cont;
+    pag = celula -> pag;
     
     if (celula == lista -> prim && celula == lista -> ult){
         lista -> prim = lista -> ult = NULL;
@@ -102,11 +89,13 @@ void retiraListaCont(ListaCont* lista, char* chave){
         anterior -> prox = celula -> prox;
     }
     
-    destroiContribuicao (celula -> cont);
+    destroiPagina (celula -> pag);
+    
     free(celula);
 }
 
-void destroiListaCont (ListaCont* lista){
+void destroiListaPag (ListaPag* lista){
+    
     Celula* celula;
     Celula* aux_cel;
     
@@ -114,7 +103,7 @@ void destroiListaCont (ListaCont* lista){
     
     while (celula !=NULL){
         aux_cel = celula -> prox;
-        destroiContribuicao (celula -> cont);
+        destroiPagina (celula -> pag);
         free(celula);
         celula = aux_cel;
     }

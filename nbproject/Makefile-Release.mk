@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Editor.o \
 	${OBJECTDIR}/ListaCont.o \
 	${OBJECTDIR}/ListaEditor.o \
+	${OBJECTDIR}/ListaPag.o \
 	${OBJECTDIR}/Pagina.o \
 	${OBJECTDIR}/main.o
 
@@ -86,6 +87,11 @@ ${OBJECTDIR}/ListaEditor.o: ListaEditor.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaEditor.o ListaEditor.c
+
+${OBJECTDIR}/ListaPag.o: ListaPag.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaPag.o ListaPag.c
 
 ${OBJECTDIR}/Pagina.o: Pagina.c
 	${MKDIR} -p ${OBJECTDIR}

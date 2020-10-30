@@ -8,6 +8,7 @@
       <itemPath>Editor.h</itemPath>
       <itemPath>ListaCont.h</itemPath>
       <itemPath>ListaEditor.h</itemPath>
+      <itemPath>ListaPag.h</itemPath>
       <itemPath>Pagina.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -17,6 +18,7 @@
       <itemPath>Editor.c</itemPath>
       <itemPath>ListaCont.c</itemPath>
       <itemPath>ListaEditor.c</itemPath>
+      <itemPath>ListaPag.c</itemPath>
       <itemPath>Pagina.c</itemPath>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -62,6 +64,10 @@
       </item>
       <item path="ListaEditor.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ListaPag.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ListaPag.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Pagina.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Pagina.h" ex="false" tool="3" flavor2="0">
@@ -104,6 +110,10 @@
       <item path="ListaEditor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="ListaEditor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ListaPag.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ListaPag.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pagina.c" ex="false" tool="0" flavor2="0">
       </item>
