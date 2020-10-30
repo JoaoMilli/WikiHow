@@ -92,7 +92,7 @@ void imprimeContribuicao (Contribuicao* cont, char* nome){
     
     FILE * file;
     
-    file = fopen (nome, "r+");
+    file = fopen (nome, "a");
     
     fprintf(file, "-------- %s (%s) --------\n\n", retornaNomeContribuicao(cont), 
                                                retornaNomeEditor (retornaAutorContribuicao (cont)));
@@ -100,4 +100,9 @@ void imprimeContribuicao (Contribuicao* cont, char* nome){
     fprintf(file, "%s\n\n", cont -> texto);
     fclose(file);
     
+}
+
+char* retornaNomeEditorCont(Contribuicao* cont){
+    char* nome = retornaNomeEditor (cont -> autor);
+    return nome;
 }

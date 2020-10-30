@@ -25,8 +25,8 @@ void insereListaEditor (ListaEditor* lista, Editor* editor);
 
 void imprimeListaEditor (ListaEditor* lista);
 
-void retiraLista (ListaEditor* lista, char* chave);
+void retiraListaEditor (ListaEditor* lista, char* chave);
 
-void destroiLista (ListaEditor* lista);
+void destroiListaEditor (ListaEditor* lista);
 
 #endif /* LISTAEDITOR_H */

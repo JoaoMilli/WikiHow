@@ -17,6 +17,9 @@
 #include "Editor.h"
 #include "ListaEditor.h"
 #include "Contribuicao.h"
+#include "ListaCont.h"
+#include "Pagina.h"
+
 
 
 int main(int argc, char** argv) {
@@ -41,9 +44,9 @@ int main(int argc, char** argv) {
     imprimeListaEditor (lista_ed);
     printf("\n\n");
     
-    retiraLista (lista_ed, "Joao");
-    retiraLista (lista_ed, "Jorge");
-    retiraLista (lista_ed, "Maria");
+    retiraListaEditor (lista_ed, "Joao");
+    retiraListaEditor (lista_ed, "Jorge");
+    retiraListaEditor (lista_ed, "Maria");
     
     imprimeListaEditor (lista_ed);
     printf("\n\n");
@@ -58,18 +61,24 @@ int main(int argc, char** argv) {
     printf("\n\n");
     
     Contribuicao* cont = iniciaContribuicao ("c1.txt", ed1);
+    Contribuicao* cont2 = iniciaContribuicao ("c2.txt", ed2);
     
     printf("Nome: %s\n", retornaNomeContribuicao (cont));
-    char* fisica = strdup("fisica.txt");
+
+    char* nome_cont = retornaNomeContribuicao (cont);
     
-    imprimeContribuicao (cont, fisica);
+    Pagina* pag = iniciaPagina ("fisica.txt", "Fisica");
     
-    destroiContribuicao (cont);
+    insereListaCont (retornaListaPag (pag), cont);
+    insereListaCont (retornaListaPag (pag), cont2);   
+
     
-    free(fisica);
+    imprimePagina (pag);
     
-    destroiLista (lista_ed);
+    destroiPagina (pag);
+           
+    destroiListaEditor (lista_ed);
     
-   return (EXIT_SUCCESS);
+    return (EXIT_SUCCESS);
 }
 

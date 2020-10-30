@@ -54,7 +54,7 @@ void imprimeListaEditor (ListaEditor* lista){
     }
 }
 
-void retiraLista (ListaEditor* lista, char* chave){
+void retiraListaEditor (ListaEditor* lista, char* chave){
     Celula* celula = lista -> prim;
     Editor* editor;
     Celula* anterior = NULL;
@@ -89,7 +89,7 @@ void retiraLista (ListaEditor* lista, char* chave){
     free(celula);
 }
 
-void destroiLista (ListaEditor* lista){
+void destroiListaEditor (ListaEditor* lista){
     Celula* celula;
     Celula* aux_cel;
     

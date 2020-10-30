@@ -37,7 +37,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Contribuicao.o \
 	${OBJECTDIR}/Editor.o \
+	${OBJECTDIR}/ListaCont.o \
 	${OBJECTDIR}/ListaEditor.o \
+	${OBJECTDIR}/Pagina.o \
 	${OBJECTDIR}/main.o
 
 
@@ -75,10 +77,20 @@ ${OBJECTDIR}/Editor.o: Editor.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Editor.o Editor.c
 
+${OBJECTDIR}/ListaCont.o: ListaCont.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaCont.o ListaCont.c
+
 ${OBJECTDIR}/ListaEditor.o: ListaEditor.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaEditor.o ListaEditor.c
+
+${OBJECTDIR}/Pagina.o: Pagina.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pagina.o Pagina.c
 
 ${OBJECTDIR}/main.o: main.c
 	${MKDIR} -p ${OBJECTDIR}
