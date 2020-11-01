@@ -37,8 +37,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Contribuicao.o \
 	${OBJECTDIR}/Editor.o \
+	${OBJECTDIR}/Link.o \
 	${OBJECTDIR}/ListaCont.o \
 	${OBJECTDIR}/ListaEditor.o \
+	${OBJECTDIR}/ListaLink.o \
 	${OBJECTDIR}/ListaPag.o \
 	${OBJECTDIR}/Pagina.o \
 	${OBJECTDIR}/main.o
@@ -78,6 +80,11 @@ ${OBJECTDIR}/Editor.o: Editor.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Editor.o Editor.c
 
+${OBJECTDIR}/Link.o: Link.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Link.o Link.c
+
 ${OBJECTDIR}/ListaCont.o: ListaCont.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -87,6 +94,11 @@ ${OBJECTDIR}/ListaEditor.o: ListaEditor.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaEditor.o ListaEditor.c
+
+${OBJECTDIR}/ListaLink.o: ListaLink.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ListaLink.o ListaLink.c
 
 ${OBJECTDIR}/ListaPag.o: ListaPag.c
 	${MKDIR} -p ${OBJECTDIR}

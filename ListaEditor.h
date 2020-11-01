@@ -21,6 +21,8 @@ typedef struct lista_editor ListaEditor;
 
 ListaEditor* iniciaListaEditor();
 
+Editor* retornaEditor(ListaEditor* lista, char chave[20]);
+
 void insereListaEditor (ListaEditor* lista, Editor* editor);
 
 void imprimeListaEditor (ListaEditor* lista);

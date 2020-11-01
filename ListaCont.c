@@ -37,6 +37,16 @@ ListaCont* iniciaListaCont(){
     return lista;
 }
 
+Contribuicao* retornaContribuicao(ListaCont* lista, char chave[20]){
+    Celula* cel;
+    
+    for(cel=lista -> prim; cel !=NULL; cel = cel-> prox){
+        if (!strcmp(chave, retornaNomeContribuicao (cel -> cont))){
+            return cel-> cont;
+        }
+    }
+}
+
 void insereListaCont (ListaCont* lista, Contribuicao* cont){
     Celula* celula;
     celula = (Celula*) malloc (sizeof(Celula));
@@ -71,7 +81,7 @@ void imprimeListaContNomes (ListaCont* lista, char* nome){
     fclose(file);
 }
 
-void retiraListaCont(ListaCont* lista, char* chave){
+void retiraListaCont(ListaCont* lista, char chave[20]){
     Celula* celula = lista -> prim;
     Contribuicao* cont;
     Celula* anterior = NULL;

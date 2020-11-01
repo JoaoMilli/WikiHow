@@ -36,6 +36,16 @@ ListaEditor* iniciaListaEditor(){
     return lista;
 }
 
+Editor* retornaEditor(ListaEditor* lista, char chave[20]){
+    Celula* cel;
+    
+    for(cel=lista -> prim; cel !=NULL; cel = cel-> prox){
+        if (!strcmp(chave, retornaNomeEditor (cel -> editor))){
+            return cel->editor;
+        }
+    }
+}
+
 void insereListaEditor (ListaEditor* lista, Editor* editor){
     Celula* celula;
     celula = (Celula*) malloc (sizeof(Celula));

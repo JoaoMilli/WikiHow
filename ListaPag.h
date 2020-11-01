@@ -20,7 +20,9 @@ typedef struct lista_pag ListaPag;
 
 ListaPag* iniciaListaPagina();
 
-void insereListaPag (ListaPag* lista, Pagina* editor);
+Pagina* retornaPagina(ListaPag* lista, char chave[20]);
+
+void insereListaPag (ListaPag* lista, Pagina* pag);
 
 void imprimeListaPag (ListaPag* lista, char* nome);
 

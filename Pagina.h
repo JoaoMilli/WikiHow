@@ -18,6 +18,8 @@
 
 typedef struct pagina Pagina;
 
+#include "ListaLink.h"
+
 Pagina* iniciaPagina (char nome[20], char titulo[20]);
 
 void imprimePagina (Pagina* pag);
@@ -28,8 +30,9 @@ char* retornaTituloPagina (Pagina* pag);
 
 char* destroiPagina (Pagina* pag);
 
-ListaCont* retornaListaPag (Pagina* pag);
+ListaCont* retornaListaContPag (Pagina* pag);
 
+ListaLink* retornaListaLinkPag (Pagina* pag);
 
 
 #endif /* PAGINA_H */

@@ -20,13 +20,15 @@ typedef struct lista_cont ListaCont;
 
 ListaCont* iniciaListaCont();
 
+Contribuicao* retornaContribuicao(ListaCont* lista, char chave[20]);
+
 void insereListaCont (ListaCont* lista, Contribuicao* cont);
 
 void imprimeListaCont (ListaCont* lista, char* nome);
 
 void imprimeListaContNomes (ListaCont* lista, char* nome);
 
-void retiraListaCont(ListaCont* lista, char* chave);
+void retiraListaCont(ListaCont* lista, char chave[20]);
 
 void destroiListaCont (ListaCont* lista);
 

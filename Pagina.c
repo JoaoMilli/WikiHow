@@ -15,6 +15,7 @@
 #include "Pagina.h"
 #include "Contribuicao.h"
 #include "ListaCont.h"
+#include "ListaLink.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -22,8 +23,8 @@
 struct pagina{
     char* titulo;
     ListaCont* cont;
-    char* nome;
-    
+    ListaLink* link;
+    char* nome;   
 };
 
 Pagina* iniciaPagina (char nome[20], char titulo[20]){
@@ -31,6 +32,7 @@ Pagina* iniciaPagina (char nome[20], char titulo[20]){
     pag -> nome = strdup(nome);
     pag -> titulo = strdup(titulo);
     pag -> cont = iniciaListaCont();
+    pag -> link = iniciaListaLink();
     return pag;
 }
 
@@ -67,12 +69,17 @@ char* retornaTituloPagina (Pagina* pag){
     return pag -> titulo;
 }
 
-ListaCont* retornaListaPag (Pagina* pag){
+ListaCont* retornaListaContPag (Pagina* pag){
     return pag -> cont;
+}
+
+ListaLink* retornaListaLinkPag (Pagina* pag){
+    return pag -> link;
 }
 
 char* destroiPagina (Pagina* pag){
     destroiListaCont (pag -> cont);
+    destroiListaLink (pag -> link);
     free(pag -> nome);
     free(pag -> titulo);
     free(pag);

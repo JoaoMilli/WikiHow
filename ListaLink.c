@@ -5,52 +5,44 @@
  */
 
 /* 
- * File:   ListaPag.c
+ * File:   ListaLink.c
  * Author: joao
  * 
- * Created on 30 de Outubro de 2020, 12:38
+ * Created on 1 de Novembro de 2020, 16:35
  */
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ListaPag.h"
+#include "Link.h"
+#include "ListaLink.h"
 #include "Pagina.h"
 
 typedef struct celula Celula;
 
 struct celula{
-    Pagina* pag;
+    Link* link;
     Celula* prox;
 };
 
-struct lista_pag{
+struct lista_link{
     Celula* prim;
     Celula* ult;
 };
 
-ListaPag* iniciaListaPagina(){
-    ListaPag* lista;
-    lista = (ListaPag*) malloc (sizeof(ListaPag));
+ListaLink* iniciaListaLink(){
+    ListaLink* lista;
+    lista = (ListaLink*) malloc (sizeof(ListaLink));
     lista -> prim = NULL;
     lista -> ult = NULL;
     return lista;
 }
 
-Pagina* retornaPagina(ListaPag* lista, char chave[20]){
-    Celula* cel;
-    
-    for(cel=lista -> prim; cel !=NULL; cel = cel-> prox){
-        if (!strcmp(chave, retornaTituloPagina (cel -> pag))){
-            return cel-> pag;
-        }
-    }
-}
-
-void insereListaPag (ListaPag* lista, Pagina* pag){
+void insereListaLink (ListaLink* lista, Link* link){
     Celula* celula;
     celula = (Celula*) malloc (sizeof(Celula));
-    celula -> pag = pag;
+    celula -> link = link;
     if (lista -> ult != NULL) lista -> ult -> prox = celula;
     lista -> ult = celula;
     celula -> prox = NULL;
@@ -58,23 +50,24 @@ void insereListaPag (ListaPag* lista, Pagina* pag){
     if(lista -> prim == NULL) lista -> prim = celula;
 }
 
-void imprimeListaPag (ListaPag* lista, char* nome){
-    
+void imprimeListaLink (ListaLink* lista){
     Celula* aux_cell;
     
     for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
-        imprimePagina (aux_cell -> pag);
+        imprimeTituloLink(aux_cell -> link);
+        printf(" ");
+        imprimeNomeLink(aux_cell -> link);
+        printf("\n");
     }
 }
 
-void retiraListaPag (ListaPag* lista, char* chave){
-    
+void retiraListaLink (ListaLink* lista, Link* chave){
     Celula* celula = lista -> prim;
-    Pagina* pag;
+    Link* link;
     Celula* anterior = NULL;
     
     
-    while (celula != NULL && strcmp(retornaTituloPagina(celula -> pag), chave)){
+    while (celula != NULL && celula -> link != link){
         anterior = celula;
         celula = celula -> prox;
     }
@@ -83,7 +76,7 @@ void retiraListaPag (ListaPag* lista, char* chave){
         return;
     }
     
-    pag = celula -> pag;
+    link = celula -> link;
     
     if (celula == lista -> prim && celula == lista -> ult){
         lista -> prim = lista -> ult = NULL;
@@ -99,13 +92,12 @@ void retiraListaPag (ListaPag* lista, char* chave){
         anterior -> prox = celula -> prox;
     }
     
-    destroiPagina (celula -> pag);
+    destroiLink(celula -> link);
     
     free(celula);
 }
 
-void destroiListaPag (ListaPag* lista){
-    
+void destroiListaLink (ListaLink* lista){
     Celula* celula;
     Celula* aux_cel;
     
@@ -113,7 +105,7 @@ void destroiListaPag (ListaPag* lista){
     
     while (celula !=NULL){
         aux_cel = celula -> prox;
-        destroiPagina (celula -> pag);
+        destroiLink (celula -> link);
         free(celula);
         celula = aux_cel;
     }

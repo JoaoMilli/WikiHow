@@ -1,12 +1,18 @@
-build/Debug/GNU-Linux/main.o: main.c Editor.h ListaEditor.h \
- Contribuicao.h ListaCont.h Pagina.h
+build/Debug/GNU-Linux/main.o: main.c Link.h Pagina.h ListaCont.h \
+ Contribuicao.h Editor.h ListaLink.h ListaEditor.h ListaPag.h
 
-Editor.h:
+Link.h:
 
-ListaEditor.h:
-
-Contribuicao.h:
+Pagina.h:
 
 ListaCont.h:
 
-Pagina.h:
+Contribuicao.h:
+
+Editor.h:
+
+ListaLink.h:
+
+ListaEditor.h:
+
+ListaPag.h:
