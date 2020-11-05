@@ -34,6 +34,10 @@ void imprimeNomeLink(Link* link){
     printf("%s", retornaNomePagina (link -> pag));
 }
 
+Pagina* retornaPagLink(Link* link){
+    return link -> pag;
+}
+
 Link* destroiLink(Link* link){
     free(link);
 }

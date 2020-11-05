@@ -97,6 +97,26 @@ void retiraListaLink (ListaLink* lista, Link* chave){
     free(celula);
 }
 
+void retiraPaginaLink (ListaLink* lista, Pagina* pagina){
+    Celula* aux_cell;
+    
+    for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
+        if (retornaPagLink(aux_cell -> link) == pagina){
+            retiraListaLink (lista, aux_cell -> link);
+        }
+    }
+}
+
+Link* retornaLink (ListaLink* lista, char chave[20]){
+    Celula* cel;
+    
+    for(cel=lista -> prim; cel !=NULL; cel = cel-> prox){
+        if (!strcmp(chave, retornaTituloPagina (retornaPagLink(cel -> link)))){
+            return cel-> link;
+        }
+    }
+}
+
 void destroiListaLink (ListaLink* lista){
     Celula* celula;
     Celula* aux_cel;

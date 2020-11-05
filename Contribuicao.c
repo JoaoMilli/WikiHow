@@ -72,7 +72,7 @@ char* retornaNomeContribuicao (Contribuicao* cont){
     return (cont -> nome);
 }
 
-Editor* retornaAutorContribuicao (Contribuicao* cont){
+Editor* retornaEditorContribuicao (Contribuicao* cont){
     return (cont -> autor);
 }
 
@@ -95,7 +95,7 @@ void imprimeContribuicao (Contribuicao* cont, char* nome){
     file = fopen (nome, "a");
     
     fprintf(file, "-------- %s (%s) --------\n\n", retornaNomeContribuicao(cont), 
-                                               retornaNomeEditor (retornaAutorContribuicao (cont)));
+                                               retornaNomeEditor (retornaEditorContribuicao (cont)));
     
     fprintf(file, "%s\n\n", cont -> texto);
     fclose(file);
@@ -105,4 +105,8 @@ void imprimeContribuicao (Contribuicao* cont, char* nome){
 char* retornaNomeEditorCont(Contribuicao* cont){
     char* nome = retornaNomeEditor (cont -> autor);
     return nome;
+}
+
+int retornaRemovida(Contribuicao* cont){
+    return cont -> removida;
 }

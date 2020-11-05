@@ -45,6 +45,7 @@ Contribuicao* retornaContribuicao(ListaCont* lista, char chave[20]){
             return cel-> cont;
         }
     }
+    return (NULL);
 }
 
 void insereListaCont (ListaCont* lista, Contribuicao* cont){
@@ -76,7 +77,13 @@ void imprimeListaContNomes (ListaCont* lista, char* nome){
     file = fopen (nome, "a");
     
     for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
-        fprintf(file,"%s %s\n", retornaNomeEditorCont(aux_cell -> cont), retornaNomeContribuicao (aux_cell -> cont));
+        fprintf(file,"%s %s", retornaNomeEditorCont(aux_cell -> cont), retornaNomeContribuicao (aux_cell -> cont));
+        if (retornaRemovida(aux_cell -> cont)){
+            fprintf(file," <<retirada>>\n");
+        }
+        else{
+            fprintf(file,"\n");
+        }
     }
     fclose(file);
 }
@@ -114,6 +121,18 @@ void retiraListaCont(ListaCont* lista, char chave[20]){
     
     destroiContribuicao (celula -> cont);
     free(celula);
+}
+
+void removeListaCont(ListaCont* lista, char chave[20]){
+    Celula* celula;
+    Contribuicao* cont;
+    
+    
+    for(celula = lista -> prim; celula != NULL; celula = celula -> prox){
+        if(!strcmp(retornaNomeContribuicao(celula -> cont), chave)){
+            removeContribuicao (celula -> cont);
+        }
+    }
 }
 
 void destroiListaCont (ListaCont* lista){

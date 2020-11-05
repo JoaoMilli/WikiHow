@@ -16,6 +16,8 @@
 #include <string.h>
 #include "ListaPag.h"
 #include "Pagina.h"
+#include "Link.h"
+#include "ListaLink.h"
 
 typedef struct celula Celula;
 
@@ -45,6 +47,7 @@ Pagina* retornaPagina(ListaPag* lista, char chave[20]){
             return cel-> pag;
         }
     }
+    return (NULL);
 }
 
 void insereListaPag (ListaPag* lista, Pagina* pag){
@@ -58,7 +61,7 @@ void insereListaPag (ListaPag* lista, Pagina* pag){
     if(lista -> prim == NULL) lista -> prim = celula;
 }
 
-void imprimeListaPag (ListaPag* lista, char* nome){
+void imprimeListaPag (ListaPag* lista){
     
     Celula* aux_cell;
     
@@ -102,6 +105,21 @@ void retiraListaPag (ListaPag* lista, char* chave){
     destroiPagina (celula -> pag);
     
     free(celula);
+}
+
+void removeLinks(ListaPag* lista, char nome[30]){
+    Celula* aux_cell;
+    Pagina* pag;
+    
+    for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
+        if (!strcmp(nome, retornaTituloPagina (aux_cell -> pag))){
+            pag = aux_cell -> pag;
+            break;
+        }
+    }
+    for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
+        retiraPaginaLink (retornaListaLinkPag (aux_cell -> pag), pag);
+    }
 }
 
 void destroiListaPag (ListaPag* lista){

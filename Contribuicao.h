@@ -32,4 +32,6 @@ void removeContribuicao(Contribuicao* cont);
 
 char* retornaNomeEditorCont(Contribuicao* cont);
 
+int retornaRemovida(Contribuicao* cont);
+
 #endif /* CONTRIBUICAO_H */

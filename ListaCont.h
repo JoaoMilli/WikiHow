@@ -30,6 +30,8 @@ void imprimeListaContNomes (ListaCont* lista, char* nome);
 
 void retiraListaCont(ListaCont* lista, char chave[20]);
 
+void removeListaCont(ListaCont* lista, char chave[20]);
+        
 void destroiListaCont (ListaCont* lista);
 
 

@@ -26,4 +26,6 @@ void imprimeNomeLink(Link* link);
 
 Link* destroiLink(Link* link);
 
+Pagina* retornaPagLink(Link* link);
+
 #endif /* LINK_H */

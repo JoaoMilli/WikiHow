@@ -15,10 +15,13 @@
 #define LISTALINK_H
 
 #include "Link.h"
+#include "Pagina.h"
 
 typedef struct lista_link ListaLink;
 
 ListaLink* iniciaListaLink();
+
+Link* retornaLink (ListaLink* lista, char chave[20]);
 
 void insereListaLink (ListaLink* lista, Link* link);
 
@@ -27,5 +30,7 @@ void imprimeListaLink (ListaLink* lista);
 void retiraListaLink (ListaLink* lista, Link* chave);
 
 void destroiListaLink (ListaLink* lista);
+
+void retiraPaginaLink (ListaLink* lista, Pagina* pagina);
 
 #endif /* LISTALINK_H */

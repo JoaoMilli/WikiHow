@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
     ListaPag* wiki;
     Editor* aux_ed;
     ListaEditor* editores;
+    Link* aux_link;
     
     wiki = iniciaListaPagina();
     editores = iniciaListaEditor();
@@ -45,7 +46,9 @@ int main(int argc, char** argv) {
     
     entrada = fopen("entrada.txt","r");
     
-    if (entrada == NULL) return 0;
+    if (entrada == NULL){
+        return 0;
+    }
     
     fscanf(entrada, "%s", str1);
     
@@ -60,7 +63,16 @@ int main(int argc, char** argv) {
         
         else if(str1 == "RETIRAPAGINA"){
             fscanf(entrada, "%s", str1);
-            retiraListaPag (wiki, str1);
+            aux_pag = retornaPagina(wiki, str1);
+            if (aux_pag == NULL){
+                log = fopen("log.txt","a");
+                fprintf(log, "ERRO: Pagina nao existe para retirada\n");
+                fclose(log);
+            }
+            else{
+                removeLinks(wiki, str1);
+                retiraListaPag (wiki, str1);
+            }
         }
         
         else if(str1 == "INSEREEDITOR"){
@@ -74,9 +86,23 @@ int main(int argc, char** argv) {
             fscanf(entrada, "%s", str2);
             fscanf(entrada, "%s", str3);
             aux_ed = retornaEditor(editores, str2);
-            aux_cont = iniciaContribuicao (str3, aux_ed);
-            aux_pag = retornaPagina(wiki, str1);
-            insereListaCont (retornaListaContPag (aux_pag), aux_cont);
+            if (aux_ed == NULL){
+                log = fopen("log.txt","a");
+                fprintf(log,"ERRO: Editor nao existe para inserir contribuicao\n");
+                fclose(log);
+            }
+            else{
+                aux_pag = retornaPagina(wiki, str1);
+                if (aux_pag == NULL){
+                    log = fopen("log.txt","a");
+                    fprintf(log,"ERRO: Pagina nao existe para inserir contribuicao\n");
+                    fclose(log);
+                }
+                else{
+                    aux_cont = iniciaContribuicao (str3, aux_ed);
+                    insereListaCont (retornaListaContPag (aux_pag), aux_cont);
+                }
+            }
         }
         
         else if(str1 == "RETIRACONTRIBUICAO"){
@@ -84,16 +110,82 @@ int main(int argc, char** argv) {
             fscanf(entrada, "%s", str2);
             fscanf(entrada, "%s", str3);
             aux_ed = retornaEditor(editores, str2);
-            aux_pag = retornaPagina(wiki, str1);
-            retiraListaCont(retornaListaContPag (aux_pag), str3);
+            if (aux_ed == NULL){
+                log = fopen("log.txt","a");
+                fprintf(log,"ERRO: Editor nao existe para retirar contribuicao\n");
+                fclose(log);
+            }
+            else{
+                aux_pag = retornaPagina(wiki, str1);
+                if (aux_pag == NULL){
+                    log = fopen("log.txt","a");
+                    fprintf(log,"ERRO: Pagina nao existe para retirar contribuicao\n");
+                    fclose(log);
+                }
+                else{
+                    aux_cont = retornaContribuicao(retornaListaContPag (aux_pag), str3);
+                    if (aux_cont == NULL){
+                        log = fopen("log.txt","a");
+                        fprintf(log,"ERRO: A contribuicao nao existe\n");
+                        fclose(log);
+                    }
+                    else{
+                        if (strcmp(retornaNomeEditorCont(aux_cont),retornaNomeEditor(aux_ed))){
+                            log = fopen("log.txt","a");
+                            fprintf(log,"ERRO: A contribuicao nao pertence ao usuario requerido\n");
+                            fclose(log);
+                        }
+                        else{
+                            removeListaCont(retornaListaContPag (aux_pag), str3);
+                        }
+                    }
+                }
+            }
         }
         
         else if(str1 == "INSERELINK"){
-
+            fscanf(entrada, "%s", str1);
+            fscanf(entrada, "%s", str2);
+            aux_pag = retornaPagina(wiki, str2);
+            if (aux_pag == NULL){
+                log = fopen("log.txt","a");
+                fprintf(log,"ERRO: Pagina nao existe para criar link\n");
+                fclose(log);
+            }
+            else{
+                aux_pag = retornaPagina(wiki, str1);
+                if (aux_pag == NULL){
+                    log = fopen("log.txt","a");
+                    fprintf(log,"ERRO: Pagina nao existe para inserir link\n");
+                    fclose(log);
+                }
+                else{
+                    aux_link = iniciaLink(aux_pag);
+                    insereListaLink (retornaListaLinkPag(aux_pag), aux_link);
+                }
+            }
         }
         
         else if(str1 == "RETIRALINK"){
-
+            fscanf(entrada, "%s", str1);
+            fscanf(entrada, "%s", str2);
+            aux_pag = retornaPagina(wiki, str1);
+            if (aux_pag == NULL){
+                log = fopen("log.txt","a");
+                fprintf(log,"ERRO: Pagina nao existe para retirar link\n");
+                fclose(log);
+            }
+            else{
+                aux_link = retornaLink (retornaListaLinkPag(aux_pag), str2);
+                if (aux_link == NULL){
+                    log = fopen("log.txt","a");
+                    fprintf(log,"ERRO: Link nao existe para retirar\n");
+                    fclose(log);
+                }
+                else{
+                    retiraListaLink (retornaListaLinkPag(aux_pag), aux_link);
+                }
+            }
         }
         
         else if(str1 == "CAMINHO"){
@@ -101,11 +193,20 @@ int main(int argc, char** argv) {
         }
         
         else if(str1 == "IMPRIMEPAGINA"){
-
+            fscanf(entrada, "%s", str1);
+            aux_pag = retornaPagina(wiki, str1);
+            if (aux_pag == NULL){
+                log = fopen("log.txt","a");
+                fprintf(log,"ERRO: Pagina nao existe para ser impressa\n");
+                fclose(log);
+            }
+            else{
+                imprimePagina (aux_pag);
+            }
         }
         
         else if(str1 == "IMPRIMEWIKED"){
-
+            imprimeListaPag (wiki);
         }
     }
     

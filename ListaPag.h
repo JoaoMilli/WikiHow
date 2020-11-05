@@ -24,10 +24,12 @@ Pagina* retornaPagina(ListaPag* lista, char chave[20]);
 
 void insereListaPag (ListaPag* lista, Pagina* pag);
 
-void imprimeListaPag (ListaPag* lista, char* nome);
+void imprimeListaPag (ListaPag* lista);
 
 void retiraListaPag (ListaPag* lista, char* chave);
 
 void destroiListaPag (ListaPag* lista);
+
+void removeLinks(ListaPag* lista, char nome[30]);
 
 #endif /* LISTAPAG_H */

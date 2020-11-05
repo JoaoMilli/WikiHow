@@ -44,6 +44,7 @@ Editor* retornaEditor(ListaEditor* lista, char chave[20]){
             return cel->editor;
         }
     }
+    return (NULL);
 }
 
 void insereListaEditor (ListaEditor* lista, Editor* editor){
