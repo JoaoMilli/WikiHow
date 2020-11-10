@@ -7,17 +7,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/joao/NetBeansProjects/Wiki/ListaCont.c</file>
             <file>file:/home/joao/NetBeansProjects/Wiki/ListaLink.c</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/Contribuicao.h</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/ListaPag.h</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/Contribuicao.c</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/ListaPag.c</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/ListaEditor.c</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/Link.h</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/ListaLink.h</file>
+            <file>file:/home/joao/NetBeansProjects/Wiki/Editor.c</file>
             <file>file:/home/joao/NetBeansProjects/Wiki/main.c</file>
             <file>file:/home/joao/NetBeansProjects/Wiki/Editor.h</file>
             <file>file:/home/joao/NetBeansProjects/Wiki/Link.c</file>
             <file>file:/home/joao/NetBeansProjects/Wiki/Pagina.h</file>
-            <file>file:/home/joao/NetBeansProjects/Wiki/Link.h</file>
-            <file>file:/home/joao/NetBeansProjects/Wiki/ListaEditor.h</file>
             <file>file:/home/joao/NetBeansProjects/Wiki/Pagina.c</file>
-            <file>file:/home/joao/NetBeansProjects/Wiki/ListaLink.h</file>
-            <file>file:/home/joao/NetBeansProjects/Wiki/ListaCont.h</file>
         </group>
     </open-files>
 </project-private>

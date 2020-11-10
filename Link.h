@@ -20,9 +20,9 @@ typedef struct link Link;
 
 Link* iniciaLink(Pagina* pag);
 
-void imprimeTituloLink(Link* link);
+void imprimeTituloLink(Link* link, char* nome);
 
-void imprimeNomeLink(Link* link);
+void imprimeNomeLink(Link* link, char* nome);
 
 Link* destroiLink(Link* link);
 

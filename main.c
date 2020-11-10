@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     
     char str1[30], str2[30], str3[30];
     Contribuicao* aux_cont;
-    Pagina* aux_pag;
+    Pagina* aux_pag, *aux_pag2;
     ListaPag* wiki;
     Editor* aux_ed;
     ListaEditor* editores;
@@ -52,16 +52,16 @@ int main(int argc, char** argv) {
     
     fscanf(entrada, "%s", str1);
     
-    while(str1 != "FIM"){
+    while(strcmp(str1, "FIM")){
     
-        if(str1 == "INSEREPAGINA"){
+        if(!strcmp(str1, "INSEREPAGINA")){
             fscanf(entrada, "%s", str1);
             fscanf(entrada, "%s", str2);
             aux_pag = iniciaPagina (str2, str1);
             insereListaPag (wiki, aux_pag);
         }
         
-        else if(str1 == "RETIRAPAGINA"){
+        else if(!strcmp(str1, "RETIRAPAGINA")){
             fscanf(entrada, "%s", str1);
             aux_pag = retornaPagina(wiki, str1);
             if (aux_pag == NULL){
@@ -75,13 +75,13 @@ int main(int argc, char** argv) {
             }
         }
         
-        else if(str1 == "INSEREEDITOR"){
+        else if(!strcmp(str1, "INSEREEDITOR")){
             fscanf(entrada, "%s", str1);
             aux_ed = criaEditor (str1);
             insereListaEditor (editores, aux_ed);
         }
         
-        else if(str1 == "INSERECONTRIBUICAO"){
+        else if(!strcmp(str1, "INSERECONTRIBUICAO")){
             fscanf(entrada, "%s", str1);
             fscanf(entrada, "%s", str2);
             fscanf(entrada, "%s", str3);
@@ -100,12 +100,14 @@ int main(int argc, char** argv) {
                 }
                 else{
                     aux_cont = iniciaContribuicao (str3, aux_ed);
-                    insereListaCont (retornaListaContPag (aux_pag), aux_cont);
+                    if(aux_cont != NULL){
+                        insereListaCont (retornaListaContPag (aux_pag), aux_cont);
+                    }
                 }
             }
         }
         
-        else if(str1 == "RETIRACONTRIBUICAO"){
+        else if(!strcmp(str1, "RETIRACONTRIBUICAO")){
             fscanf(entrada, "%s", str1);
             fscanf(entrada, "%s", str2);
             fscanf(entrada, "%s", str3);
@@ -143,7 +145,7 @@ int main(int argc, char** argv) {
             }
         }
         
-        else if(str1 == "INSERELINK"){
+        else if(!strcmp(str1, "INSERELINK")){
             fscanf(entrada, "%s", str1);
             fscanf(entrada, "%s", str2);
             aux_pag = retornaPagina(wiki, str2);
@@ -153,20 +155,20 @@ int main(int argc, char** argv) {
                 fclose(log);
             }
             else{
-                aux_pag = retornaPagina(wiki, str1);
-                if (aux_pag == NULL){
+                aux_pag2 = retornaPagina(wiki, str1);
+                if (aux_pag2 == NULL){
                     log = fopen("log.txt","a");
                     fprintf(log,"ERRO: Pagina nao existe para inserir link\n");
                     fclose(log);
                 }
                 else{
                     aux_link = iniciaLink(aux_pag);
-                    insereListaLink (retornaListaLinkPag(aux_pag), aux_link);
+                    insereListaLink (retornaListaLinkPag(aux_pag2), aux_link);
                 }
             }
         }
         
-        else if(str1 == "RETIRALINK"){
+        else if(!strcmp(str1, "RETIRALINK")){
             fscanf(entrada, "%s", str1);
             fscanf(entrada, "%s", str2);
             aux_pag = retornaPagina(wiki, str1);
@@ -188,11 +190,11 @@ int main(int argc, char** argv) {
             }
         }
         
-        else if(str1 == "CAMINHO"){
+        else if(!strcmp(str1, "CAMINHO")){
 
         }
         
-        else if(str1 == "IMPRIMEPAGINA"){
+        else if(!strcmp(str1, "IMPRIMEPAGINA")){
             fscanf(entrada, "%s", str1);
             aux_pag = retornaPagina(wiki, str1);
             if (aux_pag == NULL){
@@ -205,16 +207,15 @@ int main(int argc, char** argv) {
             }
         }
         
-        else if(str1 == "IMPRIMEWIKED"){
+        else if(!strcmp(str1, "IMPRIMEWIKED")){
             imprimeListaPag (wiki);
         }
+        fscanf(entrada, "%s", str1);
     }
     
     fclose(entrada);
     destroiListaPag (wiki);
     destroiListaEditor (editores);
     return 0;
-    
-    return (EXIT_SUCCESS);
 }
 

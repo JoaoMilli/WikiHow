@@ -25,7 +25,7 @@ Link* retornaLink (ListaLink* lista, char chave[20]);
 
 void insereListaLink (ListaLink* lista, Link* link);
 
-void imprimeListaLink (ListaLink* lista);
+void imprimeListaLink (ListaLink* lista, char* nome);
 
 void retiraListaLink (ListaLink* lista, Link* chave);
 

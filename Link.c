@@ -26,12 +26,22 @@ Link* iniciaLink(Pagina* pag){
     return link;
 }
 
-void imprimeTituloLink(Link* link){
-    printf("%s", retornaTituloPagina (link -> pag));
+void imprimeTituloLink(Link* link, char* nome){
+    FILE* file;
+    
+    file = fopen (nome, "a");
+    
+    fprintf(file, "%s", retornaTituloPagina (link -> pag));
+    fclose(file);
 }
 
-void imprimeNomeLink(Link* link){
-    printf("%s", retornaNomePagina (link -> pag));
+void imprimeNomeLink(Link* link, char* nome){
+    FILE* file;
+    
+    file = fopen (nome, "a");
+    
+    fprintf(file, "%s", retornaNomePagina (link -> pag));
+    fclose(file);
 }
 
 Pagina* retornaPagLink(Link* link){

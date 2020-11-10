@@ -42,23 +42,32 @@ void imprimePagina (Pagina* pag){
     
     char* nome = pag -> nome;
     
-    file = fopen (nome, "w");
+    file = fopen (pag -> nome, "w");
     
     fprintf(file,"%s\n\n", pag -> titulo);
     fprintf(file,"--> Historico de contribuicoes\n\n");
     
     fclose(file);
     
-    imprimeListaContNomes (pag -> cont, nome);
+    imprimeListaContNomes (pag -> cont, pag -> nome);
     
-    file = fopen (nome, "a");
+    file = fopen (pag -> nome, "a");
+    
+    fprintf(file,"\n\n\n");
+    fprintf(file,"--> Links\n\n");
+    
+    fclose(file);
+    
+    imprimeListaLink (pag -> link, pag -> nome);
+    
+    file = fopen (pag -> nome, "a");
     
     fprintf(file,"\n\n\n");
     fprintf(file,"--> Textos\n\n");
     
     fclose(file);
     
-    imprimeListaCont (pag -> cont, nome);   
+    imprimeListaCont (pag -> cont, pag -> nome);   
 }
 
 char* retornaNomePagina (Pagina* pag){

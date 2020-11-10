@@ -50,14 +50,20 @@ void insereListaLink (ListaLink* lista, Link* link){
     if(lista -> prim == NULL) lista -> prim = celula;
 }
 
-void imprimeListaLink (ListaLink* lista){
+void imprimeListaLink (ListaLink* lista, char* nome){
     Celula* aux_cell;
     
+    FILE* file;
+    
     for (aux_cell = lista -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
-        imprimeTituloLink(aux_cell -> link);
-        printf(" ");
-        imprimeNomeLink(aux_cell -> link);
-        printf("\n");
+        imprimeTituloLink(aux_cell -> link, nome);
+        file = fopen (nome, "a");
+        fprintf(file, " ");
+        fclose(file);
+        imprimeNomeLink(aux_cell -> link, nome);
+        file = fopen (nome, "a");
+        fprintf(file, "\n");
+        fclose(file);
     }
 }
 

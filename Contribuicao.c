@@ -31,7 +31,7 @@ Contribuicao* iniciaContribuicao (char nome[20], Editor* editor){
     
     file = fopen (nome, "r");
     if(file == NULL){
-        file = fopen ("log.txt", "r+");
+        file = fopen ("log.txt", "a");
         fprintf(file, "A contribuicao %s nao existe\n", nome);
         fclose(file);
         return (NULL);
