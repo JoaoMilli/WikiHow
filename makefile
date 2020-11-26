@@ -3,3 +3,6 @@ compile: main.c Editor.c ListaEditor.c Pagina.c ListaPag.c Contribuicao.c ListaC
 
 exec: WikiHow
 	./WikiHow entrada.txt
+
+valgrind: WikiHow
+	valgrind ./WikiHow entrada.txt
