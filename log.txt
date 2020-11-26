@@ -1,2 +1,9 @@
-ERRO: Pagina nao existe para retirada
+ERRO: Pagina Psicologia nao existe para retirada
 A contribuicao c10.txt nao existe
+EXISTE CAMINHO entre UFES e UFES
+EXISTE CAMINHO entre UFES e Fisica
+EXISTE CAMINHO entre Fisica e UFES
+EXISTE CAMINHO entre Artes e UFES
+NAO EXISTE CAMINHO entre Artes e Teste
+EXISTE CAMINHO entre Teste e Artes
+NAO EXISTE CAMINHO entre Teste e Artes

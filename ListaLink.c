@@ -1,23 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   ListaLink.c
- * Author: joao
- * 
- * Created on 1 de Novembro de 2020, 16:35
- */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "Link.h"
 #include "ListaLink.h"
 #include "Pagina.h"
+#include "ListaPag.h"
 
 typedef struct celula Celula;
 
@@ -73,7 +60,7 @@ void retiraListaLink (ListaLink* lista, Link* chave){
     Celula* anterior = NULL;
     
     
-    while (celula != NULL && celula -> link != link){
+    while (celula != NULL && celula -> link != chave){
         anterior = celula;
         celula = celula -> prox;
     }
@@ -137,4 +124,60 @@ void destroiListaLink (ListaLink* lista){
     }
     
     free(lista);
+}
+
+int Caminho (Pagina* p1, Pagina* p2){ 
+        
+    if (retornaTituloPagina(p1) == retornaTituloPagina(p2)){
+        return 1;
+    }
+    
+    ListaPag* visitada;
+   
+    ListaPag* queue;
+    
+    ListaLink* lista_link;
+    
+    Celula* aux_cell;
+    
+    Pagina* p_aux, *p_aux2, *p_aux3;
+    
+    visitada = iniciaListaPagina();
+    queue = iniciaListaPagina();
+            
+    insereListaPag (visitada, p1);
+    
+    lista_link = retornaListaLinkPag(p1);
+    
+    for (aux_cell = lista_link -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
+        if (retornaPagLink(aux_cell -> link) == p2){
+            destroiListaPagCelulas (visitada);
+            destroiListaPagCelulas (queue);
+            return 1;
+        }
+        insereListaPag(queue, retornaPagLink(aux_cell -> link));
+    }       
+    while (!vazia(queue)){
+        p_aux = retornaPrim(queue);
+        insereListaPag(visitada, p_aux);
+        retiraListaPagSD (queue, retornaTituloPagina (p_aux));
+        lista_link = retornaListaLinkPag(p_aux);
+        for (aux_cell = lista_link -> prim; aux_cell != NULL; aux_cell = aux_cell -> prox){
+                
+            p_aux2 = retornaPagina(visitada, retornaTituloPagina (retornaPagLink(aux_cell -> link)));
+            p_aux3 = retornaPagina(queue, retornaTituloPagina (retornaPagLink(aux_cell -> link)));
+                
+            if (!p_aux2 && !p_aux3){
+                if (retornaPagLink(aux_cell -> link) == p2){
+                    destroiListaPagCelulas (visitada);
+                    destroiListaPagCelulas (queue);
+                return 1;
+                }
+                insereListaPag(queue, retornaPagLink(aux_cell -> link));
+            }
+        } 
+    }
+    destroiListaPagCelulas (visitada);
+    destroiListaPagCelulas (queue);
+    return 0;
 }

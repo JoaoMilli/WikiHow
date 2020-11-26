@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   ListaPag.c
- * Author: joao
- * 
- * Created on 30 de Outubro de 2020, 12:38
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -107,6 +94,41 @@ void retiraListaPag (ListaPag* lista, char* chave){
     free(celula);
 }
 
+void retiraListaPagSD (ListaPag* lista, char* chave){
+    
+    Celula* celula = lista -> prim;
+    Pagina* pag;
+    Celula* anterior = NULL;
+    
+    
+    while (celula != NULL && strcmp(retornaTituloPagina(celula -> pag), chave)){
+        anterior = celula;
+        celula = celula -> prox;
+    }
+    
+    if (celula == NULL){
+        return;
+    }
+    
+    pag = celula -> pag;
+    
+    if (celula == lista -> prim && celula == lista -> ult){
+        lista -> prim = lista -> ult = NULL;
+    }
+    else if (celula == lista -> prim){
+        lista -> prim = celula -> prox;
+    }
+    else if (celula == lista -> ult){
+        lista -> ult = anterior;
+        lista -> ult -> prox =NULL;
+    }
+    else{
+        anterior -> prox = celula -> prox;
+    }
+    
+    free(celula);
+}
+
 void removeLinks(ListaPag* lista, char nome[30]){
     Celula* aux_cell;
     Pagina* pag;
@@ -122,6 +144,15 @@ void removeLinks(ListaPag* lista, char nome[30]){
     }
 }
 
+Pagina* retornaPrim(ListaPag* lista){
+    return(lista -> prim -> pag);
+}
+
+int vazia (ListaPag* lista){
+    if(lista -> prim == NULL) return 1;
+    else return 0;
+}
+
 void destroiListaPag (ListaPag* lista){
     
     Celula* celula;
@@ -132,6 +163,22 @@ void destroiListaPag (ListaPag* lista){
     while (celula !=NULL){
         aux_cel = celula -> prox;
         destroiPagina (celula -> pag);
+        free(celula);
+        celula = aux_cel;
+    }
+    
+    free(lista);
+}
+
+void destroiListaPagCelulas (ListaPag* lista){
+    
+    Celula* celula;
+    Celula* aux_cel;
+    
+    celula = lista -> prim;
+    
+    while (celula !=NULL){
+        aux_cel = celula -> prox;
         free(celula);
         celula = aux_cel;
     }
